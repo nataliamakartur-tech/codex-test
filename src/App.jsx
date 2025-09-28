@@ -13,14 +13,14 @@ function App() {
   let [cast, setCast] = useState([]);
   let [memberInfo, setMemberInfo] = useState(null);
 
-  async function fetchCast() {
-    const response = await fetch('cast.json');
-    setCast(await response.json());
-  }
-
   useEffect(() => {
-    fetchCast();
-  });
+    const loadCast = async () => {
+      const response = await fetch('cast.json');
+      setCast(await response.json());
+    };
+
+    loadCast();
+  }, []);
 
   return (
     <div className="container">
